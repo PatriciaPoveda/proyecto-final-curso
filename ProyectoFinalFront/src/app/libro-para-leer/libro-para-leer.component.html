@@ -1,0 +1,46 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="text-left my-2">
+      <button
+        [routerLink]="['/libros-para-leer/añadir']"
+        class="btn btn-rounded btn-warning"
+        type="button"
+        *ngIf="authService.token"
+      >
+        Añadir nuevo libro
+      </button>
+    </div>
+    <h5>Libros que quiero leer</h5>
+
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Título</th>
+          <th scope="col">Autor</th>
+
+          <th *ngIf="authService.token" scope="col">Añadir/Eliminar</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let libro of librosParaLeer; let i = index">
+        <tr>
+          <td>{{ libro.id }}</td>
+          <td>{{ libro.titulo }}</td>
+          <td>{{ libro.autor }}</td>
+
+          <td *ngIf="authService.token">
+            <button
+              class="btn btn-outline-warning m-md-1"
+              [routerLink]="['/libros-para-leer/editar', libro.id]"
+            >
+              Editar
+            </button>
+            <button class="btn btn-outline-danger" (click)="delete(libro)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

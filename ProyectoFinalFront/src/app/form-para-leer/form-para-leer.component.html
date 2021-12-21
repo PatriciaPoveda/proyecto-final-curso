@@ -1,0 +1,68 @@
+<div class="container">
+  <!---heading---->
+  <header class="heading">{{ titulo }}</header>
+  <hr />
+  <!---Form starting---->
+  <div class="row">
+    <form #clienteForm="ngForm">
+      <!--- titulo---->
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-xs-4">
+            <label class="firstname" for="titulo">Título:</label>
+          </div>
+          <div class="col-xs-8">
+            <input
+              type="text"
+              name="titulo"
+              [(ngModel)]="libroParaLeer.titulo"
+              id="fname"
+              placeholder="Introduce título"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+      <!--- autor---->
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-xs-4">
+            <label class="lastname" for="autor">Autor:</label>
+          </div>
+          <div class="col-xs-8">
+            <input
+              type="text"
+              name="autor"
+              [(ngModel)]="libroParaLeer.autor"
+              id="lname"
+              placeholder="Introduce autor"
+              class="form-control last"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 m-md-2">
+        <div class="col-sm-12">
+          <button
+            class="btn btn-warning"
+            role="botton"
+            (click)="create()"
+            *ngIf="!libroParaLeer.id; else elseBlock"
+          >
+            Crear
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-12 m-md-2">
+        <div class="col-sm-12">
+          <ng-template #elseBlock>
+            <button class="btn btn-warning" role="button" (click)="update()">
+              Editar
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
